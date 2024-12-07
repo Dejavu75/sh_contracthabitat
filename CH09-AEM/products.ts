@@ -3,14 +3,14 @@ export enum YN {
     N = "N",
 }
 
-export type sch_products = {
+export type sch_product = {
     code: string;
     description: string;
     hasBulks: YN;
     hasAttributes: YN;
 };
 
-export class cnt_products implements sch_products {
+export class cnt_product implements sch_product {
     code: string = "";
     description: string = "";
     hasBulks: YN = YN.N; // Default value for YN type
@@ -30,17 +30,17 @@ export class cnt_products implements sch_products {
     }
 
     // Create instances from an array of results
-    static fromResults(oRows: any): cnt_products[] {
-        let arRes: cnt_products[] = [];
+    static fromResults(oRows: any): cnt_product[] {
+        let arRes: cnt_product[] = [];
         for (let i = 0; i < oRows.length; i++) {
-            arRes.push(cnt_products.fromRow(oRows[i]));
+            arRes.push(cnt_product.fromRow(oRows[i]));
         }
         return arRes;
     }
 
     // Create a single instance from a database row
-    static fromRow(oRow: any): cnt_products {
-        return new cnt_products(
+    static fromRow(oRow: any): cnt_product {
+        return new cnt_product(
             oRow.code || "",
             oRow.description || "",
             oRow.hasBulks || YN.N,
@@ -49,8 +49,8 @@ export class cnt_products implements sch_products {
     }
 
     // Create an instance from a body (e.g., HTTP request body)
-    static fromBody(body: any): cnt_products {
-        return new cnt_products(
+    static fromBody(body: any): cnt_product {
+        return new cnt_product(
             body.code || "",
             body.description || "",
             body.hasBulks || YN.N,
@@ -59,8 +59,8 @@ export class cnt_products implements sch_products {
     }
 
     // Example method to generate a product from an external object
-    static fromEG(oEG: any): cnt_products {
-        return new cnt_products(
+    static fromEG(oEG: any): cnt_product {
+        return new cnt_product(
             oEG.code || "",
             oEG.description || "",
             oEG.hasBulks || YN.N,
