@@ -1,4 +1,4 @@
-import { sch_product } from "./products"; 
+import { sch_product } from "./products";  
 
 export enum stock_unit_status {
     active = "active",
@@ -7,7 +7,7 @@ export enum stock_unit_status {
     dismantled = "dismantled",
 }
 
-export type sch_package = {
+export type sch_pallet = {
     code: number;
     description: string;
     warehouse: string;
@@ -18,7 +18,7 @@ export type sch_package = {
     notes: string;
 };
 
-export class cnt_package implements sch_package {
+export class cnt_pallet implements sch_pallet {
     code: number;
     description: string;
     warehouse: string;
@@ -49,17 +49,17 @@ export class cnt_package implements sch_package {
     }
 
     // Create instances from a result array
-    static fromResults(oRows: any): cnt_package[] {
-        let result: cnt_package[] = [];
+    static fromResults(oRows: any): cnt_pallet[] {
+        let result: cnt_pallet[] = [];
         for (let i = 0; i < oRows.length; i++) {
-            result.push(cnt_package.fromRow(oRows[i]));
+            result.push(cnt_pallet.fromRow(oRows[i]));
         }
         return result;
     }
 
     // Create an instance from a database row
-    static fromRow(oRow: any): cnt_package {
-        return new cnt_package(
+    static fromRow(oRow: any): cnt_pallet {
+        return new cnt_pallet(
             oRow.code || 0,
             oRow.description || "",
             oRow.warehouse || "",
@@ -72,8 +72,8 @@ export class cnt_package implements sch_package {
     }
 
     // Create an instance from an HTTP request body
-    static fromBody(body: any): cnt_package {
-        return new cnt_package(
+    static fromBody(body: any): cnt_pallet {
+        return new cnt_pallet(
             body.code || 0,
             body.description || "",
             body.warehouse || "",

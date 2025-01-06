@@ -5,7 +5,7 @@ export declare enum stock_unit_status {
     damaged = "damaged",
     dismantled = "dismantled"
 }
-export type sch_package = {
+export type sch_pallet = {
     code: number;
     description: string;
     warehouse: string;
@@ -15,7 +15,7 @@ export type sch_package = {
     products: sch_product[];
     notes: string;
 };
-export declare class cnt_package implements sch_package {
+export declare class cnt_pallet implements sch_pallet {
     code: number;
     description: string;
     warehouse: string;
@@ -25,7 +25,7 @@ export declare class cnt_package implements sch_package {
     products: sch_product[];
     notes: string;
     constructor(code?: number, description?: string, warehouse?: string, status?: stock_unit_status, creationDate?: Date, dismantleDate?: Date | null, products?: sch_product[], notes?: string);
-    static fromResults(oRows: any): cnt_package[];
-    static fromRow(oRow: any): cnt_package;
-    static fromBody(body: any): cnt_package;
+    static fromResults(oRows: any): cnt_pallet[];
+    static fromRow(oRow: any): cnt_pallet;
+    static fromBody(body: any): cnt_pallet;
 }

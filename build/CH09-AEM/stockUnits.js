@@ -4,7 +4,7 @@ exports.Cnt_StockUnit = exports.StockUnitType = void 0;
 var StockUnitType;
 (function (StockUnitType) {
     StockUnitType["product"] = "product";
-    StockUnitType["package"] = "package";
+    StockUnitType["pack"] = "pack";
     StockUnitType["pallet"] = "pallet";
 })(StockUnitType || (exports.StockUnitType = StockUnitType = {}));
 class Cnt_StockUnit {

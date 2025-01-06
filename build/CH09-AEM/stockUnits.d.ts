@@ -1,6 +1,6 @@
 export declare enum StockUnitType {
     product = "product",
-    package = "package",
+    pack = "pack",
     pallet = "pallet"
 }
 export type Sch_StockUnit = {
