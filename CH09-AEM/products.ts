@@ -1,41 +1,49 @@
-export enum YN {
-    Y = "Y",
-    N = "N",
+export enum YN { 
+    y = "y",
+    n = "n",
 }
 
 export type sch_product = {
     code: string;
     description: string;
-    hasBulks: YN;
-    hasAttributes: YN;
+    hasPackage: YN;
+    hasAttribute: YN;
+    pack: string; // Single package identifier
+    attribute: string; // Single attribute identifier
 };
 
 export class cnt_product implements sch_product {
     code: string = "";
     description: string = "";
-    hasBulks: YN = YN.N; // Default value for YN type
-    hasAttributes: YN = YN.N;
+    hasPackage: YN = YN.n; // Default value for YN type
+    hasAttribute: YN = YN.n;
+    pack: string = ""; // Default empty string
+    attribute: string = ""; // Default empty string
 
     // Constructor with default values
     constructor(
         code: string = "",
         description: string = "",
-        hasBulks: YN = YN.N,
-        hasAttributes: YN = YN.N
+        hasPackage: YN = YN.n,
+        hasAttribute: YN = YN.n,
+        pack: string = "",
+        attribute: string = ""
     ) {
         this.code = code;
         this.description = description;
-        this.hasBulks = hasBulks;
-        this.hasAttributes = hasAttributes;
+        this.hasPackage = hasPackage;
+        this.hasAttribute = hasAttribute;
+        this.pack = pack;
+        this.attribute = attribute;
     }
 
     // Create instances from an array of results
     static fromResults(oRows: any): cnt_product[] {
-        let arRes: cnt_product[] = [];
+        let result: cnt_product[] = [];
         for (let i = 0; i < oRows.length; i++) {
-            arRes.push(cnt_product.fromRow(oRows[i]));
+            result.push(cnt_product.fromRow(oRows[i]));
         }
-        return arRes;
+        return result;
     }
 
     // Create a single instance from a database row
@@ -43,8 +51,10 @@ export class cnt_product implements sch_product {
         return new cnt_product(
             oRow.code || "",
             oRow.description || "",
-            oRow.hasBulks || YN.N,
-            oRow.hasAttributes || YN.N
+            oRow.hasPackage || YN.n,
+            oRow.hasAttribute || YN.n,
+            oRow.pack || "",
+            oRow.attribute || ""
         );
     }
 
@@ -53,8 +63,10 @@ export class cnt_product implements sch_product {
         return new cnt_product(
             body.code || "",
             body.description || "",
-            body.hasBulks || YN.N,
-            body.hasAttributes || YN.N
+            body.hasPackage || YN.n,
+            body.hasAttribute || YN.n,
+            body.pack || "",
+            body.attribute || ""
         );
     }
 
@@ -63,8 +75,10 @@ export class cnt_product implements sch_product {
         return new cnt_product(
             oEG.code || "",
             oEG.description || "",
-            oEG.hasBulks || YN.N,
-            oEG.hasAttributes || YN.N
+            oEG.hasPackage || YN.n,
+            oEG.hasAttribute || YN.n,
+            oEG.pack || "",
+            oEG.attribute || ""
         );
     }
 }

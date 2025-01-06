@@ -1,19 +1,23 @@
 export declare enum YN {
-    Y = "Y",
-    N = "N"
+    y = "y",
+    n = "n"
 }
 export type sch_product = {
     code: string;
     description: string;
-    hasBulks: YN;
-    hasAttributes: YN;
+    hasPackage: YN;
+    hasAttribute: YN;
+    pack: string;
+    attribute: string;
 };
 export declare class cnt_product implements sch_product {
     code: string;
     description: string;
-    hasBulks: YN;
-    hasAttributes: YN;
-    constructor(code?: string, description?: string, hasBulks?: YN, hasAttributes?: YN);
+    hasPackage: YN;
+    hasAttribute: YN;
+    pack: string;
+    attribute: string;
+    constructor(code?: string, description?: string, hasPackage?: YN, hasAttribute?: YN, pack?: string, attribute?: string);
     static fromResults(oRows: any): cnt_product[];
     static fromRow(oRow: any): cnt_product;
     static fromBody(body: any): cnt_product;
