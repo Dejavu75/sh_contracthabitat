@@ -15,3 +15,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./CH09-AEM/products"), exports);
+__exportStar(require("./CH09-AEM/pallets"), exports);
+__exportStar(require("./CH09-AEM/stockUnits"), exports);
