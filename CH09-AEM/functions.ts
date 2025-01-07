@@ -15,7 +15,9 @@ export class cnt_tranferPallet implements sch_tranferPallet {
         this.pallet = pallet;
         this.warehouse = warehouse;
     }
-
+    static defaultTransfer(): cnt_tranferPallet {
+        return new cnt_tranferPallet(cnt_pallet.defaultPallet(), "");
+    }
     // Create from a JSON object
     static fromJson(json: any): cnt_tranferPallet {
         console.log("Parsing cnt_tranferPallet from JSON:", json);

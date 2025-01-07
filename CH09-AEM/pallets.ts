@@ -47,7 +47,9 @@ export class cnt_pallet implements sch_pallet {
         this.products = products;
         this.notes = notes;
     }
-
+    static defaultPallet(): cnt_pallet {
+        return new cnt_pallet(0, "", "", stock_unit_status.active, new Date(), null, [], "");
+    }
     // Create instances from a result array
     static fromResults(oRows: any): cnt_pallet[] {
         let result: cnt_pallet[] = [];
