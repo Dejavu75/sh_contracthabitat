@@ -81,4 +81,15 @@ export class cnt_product implements sch_product {
             oEG.attribute || ""
         );
     }
+    static fromJson(json: any): cnt_product {
+        console.log("Parsing cnt_product from JSON:", json);
+        return new cnt_product(
+            json.code || "",
+            json.description || "",
+            json.hasPackage === "y" ? YN.y : YN.n,
+            json.hasAttribute === "y" ? YN.y : YN.n,
+            json.pack || "",
+            json.attribute || ""
+        );
+    }
 }
