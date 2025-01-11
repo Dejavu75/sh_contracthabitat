@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cnt_pallet = exports.stock_unit_status = void 0;
+const products_1 = require("./products");
 var stock_unit_status;
 (function (stock_unit_status) {
     stock_unit_status["active"] = "active";
@@ -19,6 +20,9 @@ class cnt_pallet {
         this.products = products;
         this.notes = notes;
     }
+    static defaultPallet() {
+        return new cnt_pallet(0, "", "", stock_unit_status.active, new Date(), null, [], "");
+    }
     // Create instances from a result array
     static fromResults(oRows) {
         let result = [];
@@ -29,11 +33,15 @@ class cnt_pallet {
     }
     // Create an instance from a database row
     static fromRow(oRow) {
-        return new cnt_pallet(oRow.code || 0, oRow.description || "", oRow.warehouse || "", oRow.status || stock_unit_status.active, oRow.creationDate ? new Date(oRow.creationDate) : new Date(), oRow.dismantleDate ? new Date(oRow.dismantleDate) : null, oRow.products || [], oRow.notes || "");
+        return new cnt_pallet(oRow.code || 0, oRow.description || "", oRow.warehouse || "", oRow.status || stock_unit_status.active, oRow.creationDate ? new Date(oRow.creationDate) : new Date(), oRow.dismantleDate ? new Date(oRow.dismantleDate) : null, (oRow.products || []).map((product) => products_1.cnt_product.fromJson(product)), oRow.notes || "");
     }
     // Create an instance from an HTTP request body
     static fromBody(body) {
-        return new cnt_pallet(body.code || 0, body.description || "", body.warehouse || "", body.status || stock_unit_status.active, body.creationDate ? new Date(body.creationDate) : new Date(), body.dismantleDate ? new Date(body.dismantleDate) : null, body.products || [], body.notes || "");
+        return new cnt_pallet(body.code || 0, body.description || "", body.warehouse || "", body.status || stock_unit_status.active, body.creationDate ? new Date(body.creationDate) : new Date(), body.dismantleDate ? new Date(body.dismantleDate) : null, (body.products || []).map((product) => products_1.cnt_product.fromJson(product)), body.notes || "");
+    }
+    static fromJson(json) {
+        console.log("Parsing cnt_pallet from JSON:", json);
+        return new cnt_pallet(json.code || 0, json.description || "", json.warehouse || "", json.status || stock_unit_status.active, json.creationDate ? new Date(json.creationDate) : new Date(), json.dismantleDate ? new Date(json.dismantleDate) : null, (json.products || []).map((product) => products_1.cnt_product.fromJson(product)), json.notes || "");
     }
 }
 exports.cnt_pallet = cnt_pallet;

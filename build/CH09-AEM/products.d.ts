@@ -22,4 +22,5 @@ export declare class cnt_product implements sch_product {
     static fromRow(oRow: any): cnt_product;
     static fromBody(body: any): cnt_product;
     static fromEG(oEG: any): cnt_product;
+    static fromJson(json: any): cnt_product;
 }
