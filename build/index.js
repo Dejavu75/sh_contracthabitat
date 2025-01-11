@@ -17,3 +17,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./CH09-AEM/products"), exports);
 __exportStar(require("./CH09-AEM/pallets"), exports);
 __exportStar(require("./CH09-AEM/stockUnits"), exports);
+__exportStar(require("./CH09-AEM/warehouse"), exports);
+__exportStar(require("./CH09-AEM/functions"), exports);
