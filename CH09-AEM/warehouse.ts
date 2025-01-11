@@ -1,17 +1,17 @@
 // Define the type for Warehouse
 export type Sch_Warehouse = {
-    code: number;
-    description: string;
+    code: String;
+    description: String;
 };
 
 // Define the class for Warehouse
 export class Cnt_Warehouse implements Sch_Warehouse {
-    code: number;
-    description: string;
+    code: String;
+    description: String;
 
     constructor(
-        code: number = 0,
-        description: string = ""
+        code: String = "",
+        description: String = ""
     ) {
         this.code = code;
         this.description = description;
@@ -29,7 +29,7 @@ export class Cnt_Warehouse implements Sch_Warehouse {
     // Create a single instance from a database row
     static fromRow(oRow: any): Cnt_Warehouse {
         return new Cnt_Warehouse(
-            oRow.code || 0,
+            oRow.code || "",
             oRow.description || ""
         );
     }
@@ -37,7 +37,7 @@ export class Cnt_Warehouse implements Sch_Warehouse {
     // Create an instance from a request body (e.g., HTTP request body)
     static fromBody(body: any): Cnt_Warehouse {
         return new Cnt_Warehouse(
-            body.code || 0,
+            body.code || "",
             body.description || ""
         );
     }
