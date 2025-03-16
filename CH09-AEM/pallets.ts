@@ -88,7 +88,7 @@ export class cnt_pallet implements sch_pallet {
     }
     static fromJson(json: any): cnt_pallet {
         
-        console.log("Parsing cnt_pallet from JSON:", json);
+        //console.log("Parsing cnt_pallet from JSON:", json);
         return new cnt_pallet(
             json.code || 0,
             json.description || "",
