@@ -43,7 +43,7 @@ class cnt_product {
         return new cnt_product(oEG.code || "", oEG.description || "", oEG.hasPackage || YN.n, oEG.hasAttribute || YN.n, oEG.pack || "", oEG.attribute || "");
     }
     static fromJson(json) {
-        console.log("Parsing cnt_product from JSON:", json);
+        //console.log("Parsing cnt_product from JSON:", json);
         return new cnt_product(json.code || "", json.description || "", json.hasPackage === "y" ? YN.y : YN.n, json.hasAttribute === "y" ? YN.y : YN.n, json.pack || "", json.attribute || "");
     }
 }

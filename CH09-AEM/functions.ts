@@ -35,7 +35,7 @@ export class cnt_tranferPallet implements sch_tranferPallet {
 
     // Create from body (e.g., HTTP request body)
     static fromBody(body: any): cnt_tranferPallet {
-        //console.log("Parsing cnt_tranferPallet from HTTP body:", body);
+        //console.log("Parsing cnt_tranferPallet from HTTP body:", body); asd
         return new cnt_tranferPallet(
             cnt_pallet.fromBody(body.pallet),
             body.warehouse || ""

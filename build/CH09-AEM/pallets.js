@@ -40,7 +40,7 @@ class cnt_pallet {
         return new cnt_pallet(body.code || 0, body.description || "", body.warehouse || "", body.status || stock_unit_status.active, body.creationDate ? new Date(body.creationDate) : new Date(), body.dismantleDate ? new Date(body.dismantleDate) : null, (body.products || []).map((product) => products_1.cnt_product.fromJson(product)), body.notes || "");
     }
     static fromJson(json) {
-        console.log("Parsing cnt_pallet from JSON:", json);
+        //console.log("Parsing cnt_pallet from JSON:", json);
         return new cnt_pallet(json.code || 0, json.description || "", json.warehouse || "", json.status || stock_unit_status.active, json.creationDate ? new Date(json.creationDate) : new Date(), json.dismantleDate ? new Date(json.dismantleDate) : null, (json.products || []).map((product) => products_1.cnt_product.fromJson(product)), json.notes || "");
     }
 }
