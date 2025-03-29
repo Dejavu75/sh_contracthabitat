@@ -10,6 +10,7 @@ export type sch_product = {
     hasAttribute: YN;
     pack: string; // Single package identifier
     attribute: string; // Single attribute identifier
+    scancode: string; // Single barcode or scan code identifier
 };
 
 export class cnt_product implements sch_product {
@@ -19,7 +20,7 @@ export class cnt_product implements sch_product {
     hasAttribute: YN = YN.n;
     pack: string = ""; // Default empty string
     attribute: string = ""; // Default empty string
-
+    scancode: string; // Default empty string
     // Constructor with default values
     constructor(
         code: string = "",
@@ -27,7 +28,8 @@ export class cnt_product implements sch_product {
         hasPackage: YN = YN.n,
         hasAttribute: YN = YN.n,
         pack: string = "",
-        attribute: string = ""
+        attribute: string = "",
+        scancode: string = ""
     ) {
         this.code = code;
         this.description = description;
@@ -35,6 +37,7 @@ export class cnt_product implements sch_product {
         this.hasAttribute = hasAttribute;
         this.pack = pack;
         this.attribute = attribute;
+        this.scancode = scancode;
     }
 
     // Create instances from an array of results
@@ -54,7 +57,8 @@ export class cnt_product implements sch_product {
             oRow.hasPackage || YN.n,
             oRow.hasAttribute || YN.n,
             oRow.pack || "",
-            oRow.attribute || ""
+            oRow.attribute || "",
+            oRow.scancode || ""
         );
     }
 
@@ -66,7 +70,8 @@ export class cnt_product implements sch_product {
             body.hasPackage || YN.n,
             body.hasAttribute || YN.n,
             body.pack || "",
-            body.attribute || ""
+            body.attribute || "",
+            body.scancode || ""
         );
     }
 
@@ -78,7 +83,8 @@ export class cnt_product implements sch_product {
             oEG.hasPackage || YN.n,
             oEG.hasAttribute || YN.n,
             oEG.pack || "",
-            oEG.attribute || ""
+            oEG.attribute || "",
+            oEG.scancode || ""
         );
     }
     static fromJson(json: any): cnt_product {
@@ -89,7 +95,8 @@ export class cnt_product implements sch_product {
             json.hasPackage === "y" ? YN.y : YN.n,
             json.hasAttribute === "y" ? YN.y : YN.n,
             json.pack || "",
-            json.attribute || ""
+            json.attribute || "",
+            json.scancode || ""
         );
     }
 }
