@@ -55,7 +55,7 @@ class cnt_pallet {
             ? new Date(json.desarme)
             : null;
         return new cnt_pallet(json.id || 0, json.detalle || "", json.deposito || "", status, json.fecha ? new Date(json.fecha) : new Date(), dismantleDate, [], // No viene array de productos desde GES
-        json.alias || "");
+        json.notes || "");
     }
 }
 exports.cnt_pallet = cnt_pallet;

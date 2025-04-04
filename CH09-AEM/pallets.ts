@@ -121,7 +121,7 @@ export class cnt_pallet implements sch_pallet {
             json.fecha ? new Date(json.fecha) : new Date(),
             dismantleDate,
             [],  // No viene array de productos desde GES
-            json.alias || ""
+            json.notes || ""
         );
     }
 
