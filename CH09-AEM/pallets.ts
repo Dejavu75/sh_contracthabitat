@@ -100,4 +100,29 @@ export class cnt_pallet implements sch_pallet {
             json.notes || ""
         );
     }
+    static fromAGES(json: any): cnt_pallet {
+        const statusMap: { [key: number]: stock_unit_status } = {
+            0: stock_unit_status.active,
+            1: stock_unit_status.inactive,
+            2: stock_unit_status.damaged,
+            3: stock_unit_status.dismantled
+        };
+
+        const status = statusMap[json.estado] || stock_unit_status.active;
+        const dismantleDate = (json.desarme && json.desarme !== "0000-00-00T00:00:00")
+            ? new Date(json.desarme)
+            : null;
+
+        return new cnt_pallet(
+            json.id || 0,
+            json.detalle || "",
+            json.deposito || "",
+            status,
+            json.fecha ? new Date(json.fecha) : new Date(),
+            dismantleDate,
+            [],  // No viene array de productos desde GES
+            json.alias || ""
+        );
+    }
+
 }

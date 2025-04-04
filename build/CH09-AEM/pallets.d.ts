@@ -30,4 +30,5 @@ export declare class cnt_pallet implements sch_pallet {
     static fromRow(oRow: any): cnt_pallet;
     static fromBody(body: any): cnt_pallet;
     static fromJson(json: any): cnt_pallet;
+    static fromAGES(json: any): cnt_pallet;
 }
