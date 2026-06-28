@@ -1,4 +1,4 @@
-import { cnt_product, sch_product } from "./products";  
+import { Cnt_StockUnit } from "./stockUnits";
 
 export enum stock_unit_status {
     active = "active",
@@ -14,7 +14,7 @@ export type sch_pallet = {
     status: stock_unit_status;
     creationDate: Date;
     dismantleDate: Date | null; // Can be null if not dismantled
-    products: cnt_product[];
+    products: Cnt_StockUnit[];
     notes: string;
 };
 
@@ -25,7 +25,7 @@ export class cnt_pallet implements sch_pallet {
     status: stock_unit_status;
     creationDate: Date;
     dismantleDate: Date | null;
-    products: cnt_product[];
+    products: Cnt_StockUnit[];
     notes: string;
 
     constructor(
@@ -35,7 +35,7 @@ export class cnt_pallet implements sch_pallet {
         status: stock_unit_status = stock_unit_status.active,
         creationDate: Date = new Date(),
         dismantleDate: Date | null = null,
-        products: sch_product[] = [],
+        products: Cnt_StockUnit[] = [],
         notes: string = ""
     ) {
         this.code = code;
@@ -68,7 +68,7 @@ export class cnt_pallet implements sch_pallet {
             oRow.status || stock_unit_status.active,
             oRow.creationDate ? new Date(oRow.creationDate) : new Date(),
             oRow.dismantleDate ? new Date(oRow.dismantleDate) : null,
-            (oRow.products || []).map((product: any) => cnt_product.fromJson(product)),
+            (oRow.products || []).map((product: any) => Cnt_StockUnit.fromJson(product)),
             oRow.notes || ""
         );
     }
@@ -82,7 +82,7 @@ export class cnt_pallet implements sch_pallet {
             body.status || stock_unit_status.active,
             body.creationDate ? new Date(body.creationDate) : new Date(),
             body.dismantleDate ? new Date(body.dismantleDate) : null,
-            (body.products || []).map((product: any) => cnt_product.fromJson(product)),
+            (body.products || []).map((product: any) => Cnt_StockUnit.fromJson(product)),
             body.notes || ""
         );
     }
@@ -96,7 +96,7 @@ export class cnt_pallet implements sch_pallet {
             json.status || stock_unit_status.active,
             json.creationDate ? new Date(json.creationDate) : new Date(),
             json.dismantleDate ? new Date(json.dismantleDate) : null,
-            (json.products || []).map((product: any) => cnt_product.fromJson(product)),
+            (json.products || []).map((product: any) => Cnt_StockUnit.fromJson(product)),
             json.notes || ""
         );
     }

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cnt_pallet = exports.stock_unit_status = void 0;
-const products_1 = require("./products");
+const stockUnits_1 = require("./stockUnits");
 var stock_unit_status;
 (function (stock_unit_status) {
     stock_unit_status["active"] = "active";
@@ -33,15 +33,15 @@ class cnt_pallet {
     }
     // Create an instance from a database row
     static fromRow(oRow) {
-        return new cnt_pallet(oRow.code || 0, oRow.description || "", oRow.warehouse || "", oRow.status || stock_unit_status.active, oRow.creationDate ? new Date(oRow.creationDate) : new Date(), oRow.dismantleDate ? new Date(oRow.dismantleDate) : null, (oRow.products || []).map((product) => products_1.cnt_product.fromJson(product)), oRow.notes || "");
+        return new cnt_pallet(oRow.code || 0, oRow.description || "", oRow.warehouse || "", oRow.status || stock_unit_status.active, oRow.creationDate ? new Date(oRow.creationDate) : new Date(), oRow.dismantleDate ? new Date(oRow.dismantleDate) : null, (oRow.products || []).map((product) => stockUnits_1.Cnt_StockUnit.fromJson(product)), oRow.notes || "");
     }
     // Create an instance from an HTTP request body
     static fromBody(body) {
-        return new cnt_pallet(body.code || 0, body.description || "", body.warehouse || "", body.status || stock_unit_status.active, body.creationDate ? new Date(body.creationDate) : new Date(), body.dismantleDate ? new Date(body.dismantleDate) : null, (body.products || []).map((product) => products_1.cnt_product.fromJson(product)), body.notes || "");
+        return new cnt_pallet(body.code || 0, body.description || "", body.warehouse || "", body.status || stock_unit_status.active, body.creationDate ? new Date(body.creationDate) : new Date(), body.dismantleDate ? new Date(body.dismantleDate) : null, (body.products || []).map((product) => stockUnits_1.Cnt_StockUnit.fromJson(product)), body.notes || "");
     }
     static fromJson(json) {
         //console.log("Parsing cnt_pallet from JSON:", json);
-        return new cnt_pallet(json.code || 0, json.description || "", json.warehouse || "", json.status || stock_unit_status.active, json.creationDate ? new Date(json.creationDate) : new Date(), json.dismantleDate ? new Date(json.dismantleDate) : null, (json.products || []).map((product) => products_1.cnt_product.fromJson(product)), json.notes || "");
+        return new cnt_pallet(json.code || 0, json.description || "", json.warehouse || "", json.status || stock_unit_status.active, json.creationDate ? new Date(json.creationDate) : new Date(), json.dismantleDate ? new Date(json.dismantleDate) : null, (json.products || []).map((product) => stockUnits_1.Cnt_StockUnit.fromJson(product)), json.notes || "");
     }
     static fromAGES(json) {
         const statusMap = {

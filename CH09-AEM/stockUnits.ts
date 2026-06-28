@@ -1,3 +1,5 @@
+import { cnt_product } from "./products";
+
 export enum StockUnitType { 
     product = "product",
     pack = "pack",
@@ -13,6 +15,7 @@ export type Sch_StockUnit = {
     warehouse: string;
     type: StockUnitType;
     packageCode: number | null; // Package code, nullable
+    product: cnt_product | null;
 };
 
 export class Cnt_StockUnit implements Sch_StockUnit {
@@ -24,7 +27,7 @@ export class Cnt_StockUnit implements Sch_StockUnit {
     warehouse: string;
     type: StockUnitType;
     packageCode: number | null;
-
+    product: cnt_product | null;
     constructor(
         code: number = 0,
         packageParam: string = "", // Renamed parameter to avoid conflict
@@ -33,7 +36,8 @@ export class Cnt_StockUnit implements Sch_StockUnit {
         quantity: number = 0,
         warehouse: string = "",
         type: StockUnitType = StockUnitType.product,
-        packageCode: number | null = null
+        packageCode: number | null = null,
+        product: cnt_product | null = null
     ) {
         this.code = code;
         this.package = packageParam;
@@ -43,6 +47,7 @@ export class Cnt_StockUnit implements Sch_StockUnit {
         this.warehouse = warehouse;
         this.type = type;
         this.packageCode = packageCode;
+        this.product = product;
     }
 
     // Create instances from an array of results
@@ -64,7 +69,8 @@ export class Cnt_StockUnit implements Sch_StockUnit {
             oRow.quantity || 0,
             oRow.warehouse || "",
             oRow.type || StockUnitType.product,
-            oRow.packageCode || null
+            oRow.packageCode || null,
+            oRow.product ? cnt_product.fromJson(oRow.product) : null
         );
     }
 
@@ -78,7 +84,22 @@ export class Cnt_StockUnit implements Sch_StockUnit {
             body.quantity || 0,
             body.warehouse || "",
             body.type || StockUnitType.product,
-            body.packageCode || null
+            body.packageCode || null,
+            body.product ? cnt_product.fromJson(body.product) : null
+        );
+    }
+
+    static fromJson(json: any): Cnt_StockUnit {
+        return new Cnt_StockUnit(
+            json.code || 0,
+            json.package || "",
+            json.attribute || "",
+            json.batch || "",
+            json.quantity || 0,
+            json.warehouse || "",
+            json.type || StockUnitType.product,
+            json.packageCode || null,
+            json.product ? cnt_product.fromJson(json.product) : null
         );
     }
 }
